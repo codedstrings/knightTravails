@@ -3,13 +3,16 @@ function knightMoves(start, end) {
     const queue = [start];
     const visited = new Set();
     const parent = new Map();
-    
+    parent.set(start.toString(), null); 
+
     while(queue.length > 0) {
         const currPos = queue.shift();
         const currPosStr = currPos.toString(); // Convert to string for Map/Set keys
         
         if(currPos[0] === end[0] && currPos[1] === end[1]) {
-            return reconstructPath(parent, start, end);
+            const path = reconstructPath(parent, start, end);
+            printKnightMoves(path);
+            return path;
         }
         
         for(const nextPos of getValidMoves(currPos)) {
@@ -51,7 +54,7 @@ function reconstructPath(parent, start, end) {
     const path = [end];
     let current = end.toString();
     
-    while(parent.has(current)) {
+    while(current !== start.toString()) {
         const previousPos = parent.get(current);
         path.unshift(previousPos);
         current = previousPos.toString();
@@ -60,6 +63,12 @@ function reconstructPath(parent, start, end) {
     return path;
 }
 
-console.log(getValidMoves([0, 0])); 
-console.log(getValidMoves([7, 7])); 
-console.log(getValidMoves([3, 3])); // 8 moves
+function printKnightMoves(path) {
+    if (!path) return "No path found";
+    console.log(`You made it in ${path.length - 1} moves! Here's your path:`);
+    path.forEach(pos => console.log(pos));
+    return path;
+}
+
+// Test
+knightMoves([0,0],[7,7]);

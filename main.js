@@ -7,7 +7,6 @@ function knightMoves(start, end) {
 
     while(queue.length > 0) {
         const currPos = queue.shift();
-        const currPosStr = currPos.toString(); // Convert to string for Map/Set keys
         
         if(currPos[0] === end[0] && currPos[1] === end[1]) {
             const path = reconstructPath(parent, start, end);

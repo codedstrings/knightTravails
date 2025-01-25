@@ -22,7 +22,7 @@ knightMoves([0,0],[3,3])
 // Output: [[0,0],[1,2],[3,3]]
 ```
 
-## Implementation Requirements
-- Must use BFS for finding the shortest path
-- Must validate moves to stay within 8x8 board
-- Must track and return the complete path
+## Implementation Details
+- Used BFS for finding the shortest path
+- Validate moves to stay within 8x8 board
+- Track and return the complete BFS traversal path
